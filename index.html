@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AyudaYa — Style Guide</title>
+    <title>AyudaYa</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <main class="screen screen--centered" style="display: block; padding-top: 0; padding-bottom: 0;">
+        <div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: var(--space-lg) var(--space-md); padding-bottom: calc(var(--space-lg) + var(--nav-height));">
+            <div style="display: grid; gap: var(--space-lg); max-width: 960px; margin: 0 auto; width: 100%;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+                        <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 56px; height: 56px; object-fit: contain;">
+                        <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">AyudaYa</h1>
+                    </div>
+                    <p style="font-size: var(--font-size-body); color: var(--color-text-muted); max-width: 520px; line-height: 1.6;">
+                        Plataforma para reportar y gestionar necesidades comunitarias. Reportá baches, fallas de alumbrado o situaciones de inseguridad en tu barrio.
+                    </p>
+                </div>
+
+                <div style="display: grid; gap: var(--space-sm); max-width: 320px;">
+                    <a href="login.html" class="btn btn--primary" style="width: 100%;">Ver login</a>
+                    <a href="reportes.html" class="btn btn--secondary" style="width: 100%;">Ver reportes</a>
+                    <a href="crear-reporte.html" class="btn btn--secondary" style="width: 100%;">Crear reporte</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <nav class="navbar" aria-label="Navegación principal">
         <a href="index.html" class="navbar__item navbar__item--active" aria-current="page">
             <span class="navbar__icon" aria-hidden="true">🏠</span>
@@ -26,114 +48,5 @@
             <span>Login</span>
         </a>
     </nav>
-
-    <main class="styleguide">
-        <h1 class="screen__logo">AyudaYa</h1>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Botones</h2>
-            <div class="styleguide__component-grid">
-                <button class="btn btn--primary" type="button">Primario</button>
-                <button class="btn btn--secondary" type="button">Secundario</button>
-                <button class="btn btn--disabled" type="button" disabled>Deshabilitado</button>
-            </div>
-            <p class="mt-sm" style="font-size: var(--font-size-caption); color: var(--color-text-muted);">
-                Usa Tab para ver el estado focus-visible.
-            </p>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Inputs</h2>
-            <div class="styleguide__component-grid">
-                <div class="form__group">
-                    <label class="form__label" for="sg-normal">Normal</label>
-                    <input class="form__input" id="sg-normal" type="text" placeholder="Escribe aquí">
-                </div>
-                <div class="form__group">
-                    <label class="form__label" for="sg-error">Error</label>
-                    <input class="form__input form__input--error" id="sg-error" type="text" value="Dato inválido" aria-invalid="true" aria-describedby="sg-error-msg">
-                    <span class="form__error" id="sg-error-msg">Campo obligatorio inválido</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Card de reporte</h2>
-            <div class="report-card">
-                <div class="report-card__header">
-                    <div class="report-card__title">Bache grande en la calle 5</div>
-                    <span class="badge badge--status-pending">Pendiente</span>
-                </div>
-                <div class="report-card__meta">
-                    <span class="badge badge--category-bache">Bache</span>
-                    <span class="report-card__date">12/07/2026</span>
-                </div>
-                <div class="report-card__location">📍 Sector Bastión Popular, Mz. 4</div>
-            </div>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Badges</h2>
-            <div class="styleguide__component-grid">
-                <div>
-                    <span class="badge badge--status-pending">Pendiente</span>
-                </div>
-                <div>
-                    <span class="badge badge--status-inprogress">En proceso</span>
-                </div>
-                <div>
-                    <span class="badge badge--status-resolved">Resuelto</span>
-                </div>
-                <div>
-                    <span class="badge badge--category-bache">Bache</span>
-                </div>
-                <div>
-                    <span class="badge badge--category-alumbrado">Alumbrado</span>
-                </div>
-                <div>
-                    <span class="badge badge--category-inseguridad">Inseguridad</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Navbar (barra inferior)</h2>
-            <nav class="navbar" aria-label="Demo navbar">
-                <a href="#" class="navbar__item navbar__item--active">
-                    <span class="navbar__icon" aria-hidden="true">🏠</span>
-                    <span>Inicio</span>
-                </a>
-                <a href="#" class="navbar__item">
-                    <span class="navbar__icon" aria-hidden="true">📋</span>
-                    <span>Reportes</span>
-                </a>
-                <a href="#" class="navbar__item">
-                    <span class="navbar__icon" aria-hidden="true">➕</span>
-                    <span>Crear</span>
-                </a>
-            </nav>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">FAB (botón flotante)</h2>
-            <a href="crear-reporte.html" class="fab" aria-label="Nuevo reporte">+</a>
-        </section>
-
-        <section class="styleguide__section">
-            <h2 class="styleguide__section-title">Placeholders visuales</h2>
-            <div class="styleguide__component-grid">
-                <label class="placeholder-visual" for="sg-photo">
-                    <span aria-hidden="true" style="font-size: 1.5rem;">📷</span>
-                    <span>Agregar foto</span>
-                </label>
-                <input type="file" id="sg-photo" class="sr-hidden" disabled>
-                <label class="placeholder-visual" for="sg-map">
-                    <span aria-hidden="true" style="font-size: 1.5rem;">📍</span>
-                    <span>Ubicación en mapa</span>
-                </label>
-                <input type="text" id="sg-map" class="sr-hidden" disabled>
-            </div>
-        </section>
-    </main>
 </body>
 </html>
