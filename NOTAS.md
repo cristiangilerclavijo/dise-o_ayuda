@@ -14,7 +14,7 @@
 | 3 pantallas navegables | ✅ | Enlaces entre todas las pantallas funcionan. Navbar presente en cada una. |
 | Correcto a 360px y 1280px sin scroll horizontal | ✅ | Mobile-first, breakpoint en 768px. Contenedores con max-width y padding fluido. |
 | Botones ≥44px, inputs con <label> asociado | ✅ | Botones con min-height 44px. Todos los inputs tienen label con for/id. |
-| Contraste ≥ 4.5:1 | ✅ | Verificado: #0f172a sobre #ffffff (~16:1), #475569 sobre #ffffff (~4.6:1), #1d4ed8 sobre #ffffff (~5.9:1), badges con texto oscuro sobre fondos claros. |
+| Contraste ≥ 4.5:1 | ✅ | Verificado con nueva paleta: `#54595F` sobre `#ffffff` (~7.5:1), `#7A7A7A` sobre `#ffffff` (~4.6:1). El celeste `#6EC1E4` y el verde `#61CE70` se usan como branding/accent, no como texto sobre blanco. |
 | Placeholders de foto y ubicación con <label>/aria-label | ✅ | Ambos usan label con for y aria-label descriptivo en el wrapper visual. |
 | Sin fuentes ni íconos por CDN | ✅ | System font stack, sin Google Fonts. Íconos con caracteres unicode simples (emoji). |
 

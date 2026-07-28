@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AyudaYa — Iniciar sesión</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="screen screen--centered">
-        <div class="screen__logo">AyudaYa</div>
-        <h1 class="screen__title">Iniciar sesión</h1>
-        <p class="screen__subtitle">Reporta y gestiona necesidades de tu comunidad.</p>
+        <div style="width: 100%; max-width: 360px;">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
+                <!-- Supuesto: se agrega una imagen/logo a la izquierda para igualar la referencia del profesor -->
+                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 56px; height: 56px; object-fit: contain;">
+                <div class="screen__logo" style="margin-bottom: 0; background: var(--color-primary); color: var(--color-text-inverse); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-sm);">AyudaYa</div>
+            </div>
+            <h1 class="screen__title">Iniciar sesión</h1>
+            <p class="screen__subtitle">Reporta y gestiona necesidades de tu comunidad.</p>
 
-        <form style="width: 100%; max-width: 360px;" novalidate>
+            <form novalidate>
             <div class="form__group">
                 <label class="form__label" for="login-user">Usuario</label>
                 <input class="form__input" id="login-user" type="text" autocomplete="username" required>
