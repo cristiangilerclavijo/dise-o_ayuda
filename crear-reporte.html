@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyudaYa — Crear reporte</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="screen">
+        <h1 class="screen__title">Nuevo reporte</h1>
+        <p class="screen__subtitle">Describe la necesidad comunitaria. Mientras más datos, más fácil será resolverla.</p>
+
+        <form id="createReportForm" style="max-width: 600px;" novalidate>
+            <div class="form__group">
+                <label class="form__label" for="report-title">Título</label>
+                <input class="form__input" id="report-title" type="text" placeholder="Ej: Bache en la calle principal" required>
+                <span class="form__error" id="report-title-error"></span>
+            </div>
+
+            <div class="form__group">
+                <label class="form__label" for="report-category">Categoría</label>
+                <select class="form__input form__select" id="report-category" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="bache">Bache</option>
+                    <option value="alumbrado">Alumbrado</option>
+                    <option value="inseguridad">Inseguridad</option>
+                </select>
+                <span class="form__error" id="report-category-error"></span>
+            </div>
+
+            <div class="form__group">
+                <label class="form__label" for="report-description">Descripción</label>
+                <textarea class="form__input form__textarea" id="report-description" placeholder="Detalles del problema, cuándo ocurre, a quiénes afecta..." required></textarea>
+                <span class="form__error" id="report-description-error"></span>
+            </div>
+
+            <div class="form__group">
+                <label class="form__label" for="report-photo">Foto</label>
+                <label class="placeholder-visual" for="report-photo" aria-label="Agregar foto del reporte">
+                    <span aria-hidden="true" style="font-size: 1.5rem;">📷</span>
+                    <span>Toca para agregar una foto</span>
+                </label>
+                <input class="sr-only" id="report-photo" type="file" accept="image/*" disabled>
+                <span class="form__error" id="report-photo-error"></span>
+            </div>
+
+            <div class="form__group">
+                <label class="form__label" for="report-map">Ubicación en mapa</label>
+                <label class="placeholder-visual" for="report-map" aria-label="Seleccionar ubicación en el mapa">
+                    <span aria-hidden="true" style="font-size: 1.5rem;">📍</span>
+                    <span>Toca para seleccionar la ubicación</span>
+                </label>
+                <input class="sr-only" id="report-map" type="text" disabled>
+                <span class="form__error" id="report-map-error"></span>
+            </div>
+
+            <button class="btn btn--primary" type="submit" style="width: 100%;">Enviar reporte</button>
+        </form>
+
+        <nav class="navbar" aria-label="Navegación principal">
+            <a href="index.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">🏠</span>
+                <span>Inicio</span>
+            </a>
+            <a href="reportes.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">📋</span>
+                <span>Reportes</span>
+            </a>
+            <a href="crear-reporte.html" class="navbar__item navbar__item--active" aria-current="page">
+                <span class="navbar__icon" aria-hidden="true">➕</span>
+                <span>Crear</span>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>

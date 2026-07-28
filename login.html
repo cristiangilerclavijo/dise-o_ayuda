@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyudaYa — Iniciar sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="screen screen--centered">
+        <div class="screen__logo">AyudaYa</div>
+        <h1 class="screen__title">Iniciar sesión</h1>
+        <p class="screen__subtitle">Reporta y gestiona necesidades de tu comunidad.</p>
+
+        <form style="width: 100%; max-width: 360px;" novalidate>
+            <div class="form__group">
+                <label class="form__label" for="login-user">Usuario</label>
+                <input class="form__input" id="login-user" type="text" autocomplete="username" required>
+                <span class="form__error" id="login-user-error"></span>
+            </div>
+            <div class="form__group">
+                <label class="form__label" for="login-pass">Contraseña</label>
+                <input class="form__input" id="login-pass" type="password" autocomplete="current-password" required>
+                <span class="form__error" id="login-pass-error"></span>
+            </div>
+            <button class="btn btn--primary" type="submit" style="width: 100%; margin-top: var(--space-sm);">Ingresar</button>
+        </form>
+
+        <div class="mt-md">
+            <button class="link" type="button" onclick="alert('Funcionalidad no implementada en este prototipo.')">Crear cuenta</button>
+        </div>
+
+        <nav class="navbar" aria-label="Navegación principal">
+            <a href="index.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">🏠</span>
+                <span>Inicio</span>
+            </a>
+            <a href="reportes.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">📋</span>
+                <span>Reportes</span>
+            </a>
+            <a href="crear-reporte.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">➕</span>
+                <span>Crear</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
