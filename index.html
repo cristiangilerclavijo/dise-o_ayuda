@@ -3,22 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AyudaYa</title>
+    <title>AyudaYa — Inicio</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <main class="screen screen--centered" style="display: block; padding-top: 0; padding-bottom: 0;">
-        <div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: var(--space-lg) var(--space-md); padding-bottom: calc(var(--space-lg) + var(--nav-height));">
-            <div style="display: grid; gap: var(--space-lg); max-width: 960px; margin: 0 auto; width: 100%;">
-                <div>
-                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 56px; height: 56px; object-fit: contain;">
-                        <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">AyudaYa</h1>
-                    </div>
-                    <p style="font-size: var(--font-size-body); color: var(--color-text-muted); max-width: 520px; line-height: 1.6;">
-                        Plataforma para reportar y gestionar necesidades comunitarias. Reportá baches, fallas de alumbrado o situaciones de inseguridad en tu barrio.
+    <main class="screen screen--centered">
+        <div style="width: 100%; max-width: 960px; padding: 0 var(--space-md);">
+            <div style="display: grid; gap: var(--space-lg);">
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 48px; height: 48px; object-fit: contain;">
+                    <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">AyudaYa</h1>
+                </div>
+
+                <div style="display: grid; gap: var(--space-md);">
+                    <h2 style="font-size: var(--font-size-subtitle); font-weight: 700; color: var(--color-text); line-height: 1.3; max-width: 600px;">
+                        Reportá necesidades de tu comunidad y hacé seguimiento en tiempo real
+                    </h2>
+                    <p style="font-size: var(--font-size-body); color: var(--color-text-muted); line-height: 1.6; max-width: 560px;">
+                        AyudaYa conecta a ciudadanos con líderes comunitarios para resolver baches, fallas de alumbrado y situaciones de inseguridad. Reportá en segundos, recibí actualizaciones y mejorá tu barrio.
                     </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md);">
+                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">🕳️</div>
+                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Baches</div>
+                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Reportá huecos y desperfectos en calles y veredas</div>
+                    </div>
+                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">💡</div>
+                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Alumbrado</div>
+                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Alertá sobre postes sin luz o cableado dañado</div>
+                    </div>
+                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">🛡️</div>
+                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Inseguridad</div>
+                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Reportá situaciones de riesgo en tu sector</div>
+                    </div>
                 </div>
 
                 <div style="display: grid; gap: var(--space-sm); max-width: 320px;">
@@ -48,6 +70,5 @@
             <span>Login</span>
         </a>
     </nav>
-    <script src="js/main.js"></script>
 </body>
 </html>
