@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyudaYa — Crear cuenta</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="screen">
+        <div style="max-width: 420px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
+                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 48px; height: 48px; object-fit: contain;">
+                <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">Crear cuenta</h1>
+            </div>
+            <p style="font-size: var(--font-size-body); color: var(--color-text-muted); margin-bottom: var(--space-lg); line-height: 1.6;">
+                Unite a la comunidad. Con tu cuenta podrás reportar necesidades y hacer seguimiento de las gestiones.
+            </p>
+
+            <form id="registerForm" novalidate>
+                <div class="form__group">
+                    <label class="form__label" for="reg-name">Nombre completo</label>
+                    <input class="form__input" id="reg-name" type="text" autocomplete="name" placeholder="Ej: María González" required>
+                    <span class="form__error" id="reg-name-error"></span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="reg-user">Usuario</label>
+                    <input class="form__input" id="reg-user" type="text" autocomplete="username" placeholder="Ej: maria_g" required>
+                    <span class="form__error" id="reg-user-error"></span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="reg-email">Correo electrónico</label>
+                    <input class="form__input" id="reg-email" type="email" autocomplete="email" placeholder="nombre@correo.com" required>
+                    <span class="form__error" id="reg-email-error"></span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="reg-pass">Contraseña</label>
+                    <input class="form__input" id="reg-pass" type="password" autocomplete="new-password" required>
+                    <span class="form__error" id="reg-pass-error"></span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="reg-pass-confirm">Confirmar contraseña</label>
+                    <input class="form__input" id="reg-pass-confirm" type="password" autocomplete="new-password" required>
+                    <span class="form__error" id="reg-pass-confirm-error"></span>
+                </div>
+
+                <button class="btn btn--primary" type="submit" style="width: 100%;">REGISTRARSE</button>
+            </form>
+
+            <div style="margin-top: var(--space-md); text-align: center;">
+                <a href="login.html" class="link">Ya tengo cuenta · Iniciar sesión</a>
+            </div>
+        </div>
+
+        <nav class="navbar" aria-label="Navegación principal">
+            <a href="index.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">🏠</span>
+                <span>Inicio</span>
+            </a>
+            <a href="reportes.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">📋</span>
+                <span>Reportes</span>
+            </a>
+            <a href="crear-reporte.html" class="navbar__item">
+                <span class="navbar__icon" aria-hidden="true">➕</span>
+                <span>Crear</span>
+            </a>
+            <a href="login.html" class="navbar__item navbar__item--active" aria-current="page">
+                <span class="navbar__icon" aria-hidden="true">👤</span>
+                <span>Login</span>
+            </a>
+        </nav>
+    </main>
+
+    <script>
+        (function () {
+            const form = document.getElementById('registerForm');
+            const nameInput = document.getElementById('reg-name');
+            const userInput = document.getElementById('reg-user');
+            const emailInput = document.getElementById('reg-email');
+            const passInput = document.getElementById('reg-pass');
+            const passConfirmInput = document.getElementById('reg-pass-confirm');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                let isValid = true;
+
+                const nameError = document.getElementById('reg-name-error');
+                const userError = document.getElementById('reg-user-error');
+                const emailError = document.getElementById('reg-email-error');
+                const passError = document.getElementById('reg-pass-error');
+                const passConfirmError = document.getElementById('reg-pass-confirm-error');
+
+                nameError.textContent = '';
+                userError.textContent = '';
+                emailError.textContent = '';
+                passError.textContent = '';
+                passConfirmError.textContent = '';
+
+                if (nameInput.value.trim().length < 3) {
+                    nameError.textContent = 'Ingresá tu nombre completo';
+                    isValid = false;
+                }
+
+                if (userInput.value.trim().length < 3) {
+                    userError.textContent = 'El usuario debe tener al menos 3 caracteres';
+                    isValid = false;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    emailError.textContent = 'Ingresá un correo electrónico válido';
+                    isValid = false;
+                }
+
+                if (passInput.value.length < 6) {
+                    passError.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                    isValid = false;
+                }
+
+                if (passConfirmInput.value !== passInput.value || passConfirmInput.value === '') {
+                    passConfirmError.textContent = 'Las contraseñas no coinciden';
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert('Cuenta creada correctamente. Ahora podés iniciar sesión.');
+                    form.reset();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
