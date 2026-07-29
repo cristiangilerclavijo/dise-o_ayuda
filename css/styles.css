@@ -338,6 +338,11 @@ body {
     color: #991b1b;
 }
 
+.badge--category-convivencia {
+    background-color: #ede9fe;
+    color: #5b21b6;
+}
+
 /* FAB */
 .fab {
     position: fixed;
@@ -670,6 +675,10 @@ body {
 
 .category-card__icon--inseguridad {
     background-color: #fecaca;
+}
+
+.category-card__icon--convivencia {
+    background-color: #ede9fe;
 }
 
 .category-card__title {

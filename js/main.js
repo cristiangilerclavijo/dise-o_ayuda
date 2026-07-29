@@ -15,13 +15,15 @@
     const CATEGORY_LABELS = {
         bache: 'Bache',
         alumbrado: 'Alumbrado',
-        inseguridad: 'Inseguridad'
+        inseguridad: 'Inseguridad',
+        convivencia: 'Convivencia vecinal'
     };
 
     const CATEGORY_BADGE_CLASS = {
         bache: 'badge--category-bache',
         alumbrado: 'badge--category-alumbrado',
-        inseguridad: 'badge--category-inseguridad'
+        inseguridad: 'badge--category-inseguridad',
+        convivencia: 'badge--category-convivencia'
     };
 
     function escapeHtml(value) {
