@@ -17,6 +17,25 @@
     </script>
 </head>
 <body>
+    <nav class="navbar" aria-label="Navegación principal">
+        <a href="index.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="reportes.html" class="navbar__item navbar__item--active" aria-current="page">
+            <span class="navbar__icon" aria-hidden="true">📋</span>
+            <span>Reportes</span>
+        </a>
+        <a href="crear-reporte.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">➕</span>
+            <span>Crear</span>
+        </a>
+        <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+            <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+            <span>Tema</span>
+        </button>
+    </nav>
+
     <main class="screen">
         <h1 class="screen__title">Reportes</h1>
 
@@ -71,25 +90,6 @@
         </div>
 
         <a href="crear-reporte.html" class="fab" aria-label="Nuevo reporte">+</a>
-
-        <nav class="navbar" aria-label="Navegación principal">
-            <a href="index.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">🏠</span>
-                <span>Inicio</span>
-            </a>
-            <a href="reportes.html" class="navbar__item navbar__item--active" aria-current="page">
-                <span class="navbar__icon" aria-hidden="true">📋</span>
-                <span>Reportes</span>
-            </a>
-            <a href="crear-reporte.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">➕</span>
-                <span>Crear</span>
-            </a>
-            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
-                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
-                <span>Tema</span>
-            </button>
-        </nav>
     </main>
     <script src="js/main.js"></script>
 </body>

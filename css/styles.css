@@ -566,11 +566,10 @@ body {
 }
 
 .hero__highlight {
+    width: fit-content;
     background-color: rgba(110, 193, 228, 0.35);
-    border-radius: var(--radius-sm);
-    padding: 0 6px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
 }
 
 .hero__actions {

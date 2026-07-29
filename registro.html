@@ -17,6 +17,29 @@
     </script>
 </head>
 <body>
+    <nav class="navbar" aria-label="Navegación principal">
+        <a href="index.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="reportes.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">📋</span>
+            <span>Reportes</span>
+        </a>
+        <a href="crear-reporte.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">➕</span>
+            <span>Crear</span>
+        </a>
+        <a href="login.html" class="navbar__item navbar__item--active" aria-current="page">
+            <span class="navbar__icon" aria-hidden="true">👤</span>
+            <span>Login</span>
+        </a>
+        <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+            <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+            <span>Tema</span>
+        </button>
+    </nav>
+
     <main class="screen">
         <div class="auth-card auth-card--wide">
             <div class="auth-card__brand">
@@ -65,29 +88,6 @@
                 <a href="login.html" class="link">Ya tengo cuenta · Iniciar sesión</a>
             </div>
         </div>
-
-        <nav class="navbar" aria-label="Navegación principal">
-            <a href="index.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">🏠</span>
-                <span>Inicio</span>
-            </a>
-            <a href="reportes.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">📋</span>
-                <span>Reportes</span>
-            </a>
-            <a href="crear-reporte.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">➕</span>
-                <span>Crear</span>
-            </a>
-            <a href="login.html" class="navbar__item navbar__item--active" aria-current="page">
-                <span class="navbar__icon" aria-hidden="true">👤</span>
-                <span>Login</span>
-            </a>
-            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
-                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
-                <span>Tema</span>
-            </button>
-        </nav>
     </main>
 
     <script src="js/main.js"></script>

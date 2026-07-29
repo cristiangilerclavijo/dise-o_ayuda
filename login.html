@@ -17,6 +17,25 @@
     </script>
 </head>
 <body>
+    <nav class="navbar" aria-label="Navegación principal">
+        <a href="index.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="reportes.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">📋</span>
+            <span>Reportes</span>
+        </a>
+        <a href="crear-reporte.html" class="navbar__item">
+            <span class="navbar__icon" aria-hidden="true">➕</span>
+            <span>Crear</span>
+        </a>
+        <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+            <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+            <span>Tema</span>
+        </button>
+    </nav>
+
     <div class="screen screen--centered">
         <div class="auth-card">
             <div class="auth-card__brand">
@@ -43,25 +62,6 @@
         <div class="mt-md">
             <a href="registro.html" class="link">Crear cuenta</a>
         </div>
-
-        <nav class="navbar" aria-label="Navegación principal">
-            <a href="index.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">🏠</span>
-                <span>Inicio</span>
-            </a>
-            <a href="reportes.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">📋</span>
-                <span>Reportes</span>
-            </a>
-            <a href="crear-reporte.html" class="navbar__item">
-                <span class="navbar__icon" aria-hidden="true">➕</span>
-                <span>Crear</span>
-            </a>
-            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
-                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
-                <span>Tema</span>
-            </button>
-        </nav>
     </div>
     <script src="js/main.js"></script>
 </body>
