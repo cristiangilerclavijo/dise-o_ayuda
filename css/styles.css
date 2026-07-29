@@ -566,7 +566,11 @@ body {
 }
 
 .hero__highlight {
-    background-image: linear-gradient(180deg, transparent 62%, var(--color-primary-soft) 62%);
+    background-color: var(--color-primary-soft);
+    border-radius: var(--radius-sm);
+    padding: 0 6px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 .hero__actions {
