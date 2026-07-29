@@ -6,6 +6,15 @@
     <title>AyudaYa — Reportes</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('ayudaya_theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
     <main class="screen">
@@ -76,6 +85,10 @@
                 <span class="navbar__icon" aria-hidden="true">➕</span>
                 <span>Crear</span>
             </a>
+            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+                <span>Tema</span>
+            </button>
         </nav>
     </main>
     <script src="js/main.js"></script>

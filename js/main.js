@@ -9,9 +9,38 @@
         crearReporte: 'crear-reporte.html'
     };
 
+    const THEME_KEY = 'ayudaya_theme';
+    const REPORTS_KEY = 'ayudaya_reports';
+
+    const CATEGORY_LABELS = {
+        bache: 'Bache',
+        alumbrado: 'Alumbrado',
+        inseguridad: 'Inseguridad'
+    };
+
+    const CATEGORY_BADGE_CLASS = {
+        bache: 'badge--category-bache',
+        alumbrado: 'badge--category-alumbrado',
+        inseguridad: 'badge--category-inseguridad'
+    };
+
+    function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (ch) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+        });
+    }
+
+    function pad(n) {
+        return String(n).padStart(2, '0');
+    }
+
+    function formatDate(date) {
+        return pad(date.getDate()) + '/' + pad(date.getMonth() + 1) + '/' + date.getFullYear();
+    }
+
     function setActiveNav() {
         const current = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('.navbar__item').forEach(function (item) {
+        document.querySelectorAll('.navbar__item[href]').forEach(function (item) {
             const href = item.getAttribute('href');
             if (href === current) {
                 item.classList.add('navbar__item--active');
@@ -152,6 +181,76 @@
         });
     }
 
+    function getPhotoDataUrl(label) {
+        const img = label && label.querySelector('img');
+        return img ? img.getAttribute('src') : null;
+    }
+
+    function setupPhotoPreview() {
+        const input = document.getElementById('report-photo');
+        const label = document.getElementById('reportPhotoLabel');
+        if (!input || !label) return;
+
+        input.addEventListener('change', function () {
+            const file = input.files && input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                label.classList.add('placeholder-visual--filled');
+                label.innerHTML =
+                    '<img class="placeholder-visual__preview" src="' + reader.result + '" alt="Vista previa de la foto seleccionada">' +
+                    '<span>' + escapeHtml(file.name) + ' · Toca para cambiar</span>';
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function setupLocationField() {
+        const btn = document.getElementById('useLocationBtn');
+        const input = document.getElementById('report-location');
+        const status = document.getElementById('report-location-status');
+        if (!btn || !input) return;
+
+        btn.addEventListener('click', function () {
+            if (!('geolocation' in navigator)) {
+                if (status) {
+                    status.classList.remove('location-status--ok');
+                    status.textContent = 'Tu navegador no soporta geolocalización. Escribí la ubicación manualmente.';
+                }
+                return;
+            }
+
+            btn.disabled = true;
+            if (status) {
+                status.classList.remove('location-status--ok');
+                status.textContent = 'Obteniendo tu ubicación...';
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const lat = position.coords.latitude.toFixed(5);
+                    const lng = position.coords.longitude.toFixed(5);
+                    input.value = 'Lat ' + lat + ', Lng ' + lng;
+                    clearError(input, document.getElementById('report-map-error'));
+                    if (status) {
+                        status.classList.add('location-status--ok');
+                        status.textContent = 'Ubicación actual detectada.';
+                    }
+                    btn.disabled = false;
+                },
+                function () {
+                    if (status) {
+                        status.classList.remove('location-status--ok');
+                        status.textContent = 'No se pudo obtener tu ubicación. Escribila manualmente.';
+                    }
+                    btn.disabled = false;
+                },
+                { timeout: 8000 }
+            );
+        });
+    }
+
     function setupCreateReportForm() {
         const form = document.getElementById('createReportForm');
         if (!form) return;
@@ -159,14 +258,12 @@
         const titleInput = document.getElementById('report-title');
         const categoryInput = document.getElementById('report-category');
         const descriptionInput = document.getElementById('report-description');
-        const photoInput = document.getElementById('report-photo');
-        const mapInput = document.getElementById('report-map');
+        const locationInput = document.getElementById('report-location');
+        const photoLabel = document.getElementById('reportPhotoLabel');
 
         const titleError = document.getElementById('report-title-error');
         const categoryError = document.getElementById('report-category-error');
         const descriptionError = document.getElementById('report-description-error');
-        const photoError = document.getElementById('report-photo-error');
-        const mapError = document.getElementById('report-map-error');
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -187,19 +284,16 @@
                 return { valid: true };
             }) && isValid;
 
-            if (photoInput && photoInput.disabled) {
-                if (photoError) photoError.textContent = 'La funcionalidad de foto no está disponible en este prototipo';
-            } else if (photoError) {
-                photoError.textContent = '';
-            }
-
-            if (mapInput && mapInput.disabled) {
-                if (mapError) mapError.textContent = 'La funcionalidad de mapa no está disponible en este prototipo';
-            } else if (mapError) {
-                mapError.textContent = '';
-            }
-
             if (isValid) {
+                saveUserReport({
+                    title: titleInput.value.trim(),
+                    category: categoryInput.value,
+                    description: descriptionInput.value.trim(),
+                    location: locationInput ? locationInput.value.trim() : '',
+                    photo: getPhotoDataUrl(photoLabel),
+                    date: formatDate(new Date())
+                });
+
                 showFormSuccess(form, 'Reporte enviado correctamente. Redirigiendo...');
                 setTimeout(function () {
                     window.location.href = PAGES.reportes;
@@ -220,6 +314,83 @@
         });
     }
 
+    function loadUserReports() {
+        try {
+            const raw = localStorage.getItem(REPORTS_KEY);
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveUserReport(report) {
+        try {
+            const reports = loadUserReports();
+            reports.push(report);
+            localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
+        } catch (e) {}
+    }
+
+    function renderUserReports() {
+        const list = document.querySelector('.list');
+        if (!list) return;
+
+        const reports = loadUserReports();
+        if (!reports.length) return;
+
+        reports.slice().reverse().forEach(function (report) {
+            const article = document.createElement('article');
+            article.className = 'report-card report-card--highlight';
+
+            const categoryClass = CATEGORY_BADGE_CLASS[report.category] || 'badge--category-bache';
+            const categoryLabel = CATEGORY_LABELS[report.category] || report.category;
+            const photoHtml = report.photo
+                ? '<img class="report-card__photo" src="' + report.photo + '" alt="Foto adjunta del reporte">'
+                : '';
+
+            article.innerHTML =
+                '<div class="report-card__header">' +
+                    '<div class="report-card__title">' + escapeHtml(report.title) + '</div>' +
+                    '<span class="badge badge--status-pending">Pendiente</span>' +
+                '</div>' +
+                photoHtml +
+                '<div class="report-card__meta">' +
+                    '<span class="badge ' + categoryClass + '">' + escapeHtml(categoryLabel) + '</span>' +
+                    '<span class="report-card__date">' + escapeHtml(report.date) + '</span>' +
+                '</div>' +
+                '<div class="report-card__location">📍 ' + escapeHtml(report.location || 'Ubicación no especificada') + '</div>';
+
+            list.insertBefore(article, list.firstChild);
+        });
+    }
+
+    function setupThemeToggle() {
+        const btn = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeToggleIcon');
+        if (!btn) return;
+
+        function syncIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            btn.setAttribute('aria-pressed', String(isDark));
+            if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        syncIcon();
+
+        btn.addEventListener('click', function () {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            try {
+                localStorage.setItem(THEME_KEY, isDark ? 'light' : 'dark');
+            } catch (e) {}
+            syncIcon();
+        });
+    }
+
     function showFormSuccess(form, message) {
         var btn = form.querySelector('.btn--primary');
         if (btn) {
@@ -235,9 +406,13 @@
 
     function init() {
         setActiveNav();
+        setupThemeToggle();
         setupLoginForm();
         setupRegisterForm();
         setupCreateReportForm();
+        setupPhotoPreview();
+        setupLocationField();
+        renderUserReports();
     }
 
     if (document.readyState === 'loading') {

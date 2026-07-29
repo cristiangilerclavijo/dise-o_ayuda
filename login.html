@@ -6,14 +6,22 @@
     <title>AyudaYa — Iniciar sesión</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('ayudaya_theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
     <div class="screen screen--centered">
-        <div style="width: 100%; max-width: 360px;">
-            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
-                <!-- Supuesto: se agrega una imagen/logo a la izquierda para igualar la referencia del profesor -->
-                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 56px; height: 56px; object-fit: contain;">
-                <div class="screen__logo" style="margin-bottom: 0; background: var(--color-primary); color: var(--color-text-inverse); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-sm);">AyudaYa</div>
+        <div class="auth-card">
+            <div class="auth-card__brand">
+                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" class="auth-card__logo">
+                <div class="screen__logo auth-card__badge">AyudaYa</div>
             </div>
             <h1 class="screen__title">Iniciar sesión</h1>
             <p class="screen__subtitle">Reporta y gestiona necesidades de tu comunidad.</p>
@@ -29,7 +37,7 @@
                 <input class="form__input" id="login-pass" type="password" autocomplete="current-password" required>
                 <span class="form__error" id="login-pass-error"></span>
             </div>
-            <button class="btn btn--primary" type="submit" style="width: 100%; margin-top: var(--space-sm);">Ingresar</button>
+            <button class="btn btn--primary btn--block mt-sm" type="submit">Ingresar</button>
         </form>
 
         <div class="mt-md">
@@ -49,6 +57,10 @@
                 <span class="navbar__icon" aria-hidden="true">➕</span>
                 <span>Crear</span>
             </a>
+            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+                <span>Tema</span>
+            </button>
         </nav>
     </div>
     <script src="js/main.js"></script>

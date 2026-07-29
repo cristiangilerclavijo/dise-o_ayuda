@@ -6,54 +6,63 @@
     <title>AyudaYa — Inicio</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('ayudaya_theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
     <main class="screen screen--centered">
-        <div style="width: 100%; max-width: 960px; padding: 0 var(--space-md);">
-            <div style="display: grid; gap: var(--space-lg);">
-                <div style="display: flex; align-items: center; gap: var(--space-md);">
-                    <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 48px; height: 48px; object-fit: contain;">
-                    <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">AyudaYa</h1>
+        <div class="container">
+            <div class="hero">
+                <div class="hero__brand">
+                    <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" class="hero__logo">
+                    <h1 class="hero__name">AyudaYa</h1>
                 </div>
 
-                <div style="display: grid; gap: var(--space-md);">
-                    <h2 style="font-size: var(--font-size-subtitle); font-weight: 700; color: var(--color-text); line-height: 1.3; max-width: 600px; margin: 0;">
+                <div class="hero__intro">
+                    <h2 class="hero__headline">
                         Reportá necesidades de tu comunidad y hacé seguimiento en tiempo real
                     </h2>
-                    <p style="font-size: var(--font-size-body); color: var(--color-text); line-height: 1.6; max-width: 560px; background: #e0f2fe; padding: var(--space-md); border-radius: var(--radius-sm); margin: 0;">
+                    <p class="hero__lead">
                         AyudaYa conecta a ciudadanos con líderes comunitarios para resolver baches, fallas de alumbrado y situaciones de inseguridad. Reportá en segundos, recibí actualizaciones y mejorá tu barrio.
                     </p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md);">
-                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
-                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">🕳️</div>
-                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Baches</div>
-                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Reportá huecos y desperfectos en calles y veredas</div>
+                <div class="category-grid">
+                    <div class="report-card category-card">
+                        <div class="category-card__icon" aria-hidden="true">🕳️</div>
+                        <div class="category-card__title">Baches</div>
+                        <div class="category-card__text">Reportá huecos y desperfectos en calles y veredas</div>
                     </div>
-                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
-                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">💡</div>
-                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Alumbrado</div>
-                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Alertá sobre postes sin luz o cableado dañado</div>
+                    <div class="report-card category-card">
+                        <div class="category-card__icon" aria-hidden="true">💡</div>
+                        <div class="category-card__title">Alumbrado</div>
+                        <div class="category-card__text">Alertá sobre postes sin luz o cableado dañado</div>
                     </div>
-                    <div class="report-card" style="text-align: center; padding: var(--space-lg);">
-                        <div style="font-size: 2rem; margin-bottom: var(--space-sm);">🛡️</div>
-                        <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-xs);">Inseguridad</div>
-                        <div style="font-size: var(--font-size-body); color: var(--color-text-muted);">Reportá situaciones de riesgo en tu sector</div>
+                    <div class="report-card category-card">
+                        <div class="category-card__icon" aria-hidden="true">🛡️</div>
+                        <div class="category-card__title">Inseguridad</div>
+                        <div class="category-card__text">Reportá situaciones de riesgo en tu sector</div>
                     </div>
                 </div>
 
-                <div style="display: grid; gap: var(--space-sm); max-width: 320px;">
-                    <a href="login.html" class="btn btn--primary" style="width: 100%;">Ver login</a>
-                    <a href="reportes.html" class="btn btn--secondary" style="width: 100%;">Ver reportes</a>
-                    <a href="crear-reporte.html" class="btn btn--secondary" style="width: 100%;">Crear reporte</a>
+                <div class="hero__actions">
+                    <a href="login.html" class="btn btn--primary">Ver login</a>
+                    <a href="reportes.html" class="btn btn--secondary">Ver reportes</a>
+                    <a href="crear-reporte.html" class="btn btn--secondary">Crear reporte</a>
                 </div>
             </div>
         </div>
     </main>
 
     <nav class="navbar" aria-label="Navegación principal">
-        <a href="index.html" class="navbar__item navbar__item--active" aria-current="page">
+        <a href="index.html" class="navbar__item">
             <span class="navbar__icon" aria-hidden="true">🏠</span>
             <span>Inicio</span>
         </a>
@@ -69,6 +78,12 @@
             <span class="navbar__icon" aria-hidden="true">👤</span>
             <span>Login</span>
         </a>
+        <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+            <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+            <span>Tema</span>
+        </button>
     </nav>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -6,13 +6,22 @@
     <title>AyudaYa — Crear reporte</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('ayudaya_theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
     <main class="screen">
         <h1 class="screen__title">Nuevo reporte</h1>
         <p class="screen__subtitle">Describe la necesidad comunitaria. Mientras más datos, más fácil será resolverla.</p>
 
-        <form id="createReportForm" style="max-width: 600px;" novalidate>
+        <form id="createReportForm" class="form--narrow" novalidate>
             <div class="form__group">
                 <label class="form__label" for="report-title">Título</label>
                 <input class="form__input" id="report-title" type="text" placeholder="Ej: Bache en la calle principal" required>
@@ -38,25 +47,25 @@
 
             <div class="form__group">
                 <label class="form__label" for="report-photo">Foto</label>
-                <label class="placeholder-visual" for="report-photo" aria-label="Agregar foto del reporte">
-                    <span aria-hidden="true" style="font-size: 1.5rem;">📷</span>
+                <label class="placeholder-visual" for="report-photo" id="reportPhotoLabel" aria-label="Agregar foto del reporte">
+                    <span class="placeholder-visual__icon" aria-hidden="true">📷</span>
                     <span>Toca para agregar una foto</span>
                 </label>
-                <input class="sr-only" id="report-photo" type="file" accept="image/*" disabled>
+                <input class="sr-only" id="report-photo" type="file" accept="image/*">
                 <span class="form__error" id="report-photo-error"></span>
             </div>
 
             <div class="form__group">
-                <label class="form__label" for="report-map">Ubicación en mapa</label>
-                <label class="placeholder-visual" for="report-map" aria-label="Seleccionar ubicación en el mapa">
-                    <span aria-hidden="true" style="font-size: 1.5rem;">📍</span>
-                    <span>Toca para seleccionar la ubicación</span>
-                </label>
-                <input class="sr-only" id="report-map" type="text" disabled>
+                <label class="form__label" for="report-location">Ubicación</label>
+                <div class="location-row">
+                    <input class="form__input" id="report-location" type="text" placeholder="Ej: Sector Bastión Popular, Mz. 4">
+                    <button class="btn btn--secondary btn--icon" type="button" id="useLocationBtn" aria-label="Usar mi ubicación actual" title="Usar mi ubicación actual">📍</button>
+                </div>
+                <span class="location-status" id="report-location-status"></span>
                 <span class="form__error" id="report-map-error"></span>
             </div>
 
-            <button class="btn btn--primary" type="submit" style="width: 100%;">Enviar reporte</button>
+            <button class="btn btn--primary btn--block" type="submit">Enviar reporte</button>
         </form>
 
         <nav class="navbar" aria-label="Navegación principal">
@@ -72,6 +81,10 @@
                 <span class="navbar__icon" aria-hidden="true">➕</span>
                 <span>Crear</span>
             </a>
+            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+                <span>Tema</span>
+            </button>
         </nav>
     </main>
     <script src="js/main.js"></script>

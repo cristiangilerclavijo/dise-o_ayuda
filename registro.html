@@ -6,15 +6,24 @@
     <title>AyudaYa — Crear cuenta</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('ayudaya_theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
     <main class="screen">
-        <div style="max-width: 420px; margin: 0 auto;">
-            <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
-                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" style="width: 48px; height: 48px; object-fit: contain;">
-                <h1 style="font-size: var(--font-size-title); font-weight: 700; color: var(--color-text); margin: 0;">Crear cuenta</h1>
+        <div class="auth-card auth-card--wide">
+            <div class="auth-card__brand">
+                <img src="assets/images/logo-ayudaya.svg" alt="AyudaYa" class="auth-card__logo auth-card__logo--sm">
+                <h1 class="auth-card__title">Crear cuenta</h1>
             </div>
-            <p style="font-size: var(--font-size-body); color: var(--color-text-muted); margin-bottom: var(--space-lg); line-height: 1.6;">
+            <p class="auth-card__lead">
                 Unite a la comunidad. Con tu cuenta podrás reportar necesidades y hacer seguimiento de las gestiones.
             </p>
 
@@ -49,10 +58,10 @@
                     <span class="form__error" id="reg-pass-confirm-error"></span>
                 </div>
 
-                <button class="btn btn--primary" type="submit" style="width: 100%;">REGISTRARSE</button>
+                <button class="btn btn--primary btn--block" type="submit">REGISTRARSE</button>
             </form>
 
-            <div style="margin-top: var(--space-md); text-align: center;">
+            <div class="mt-md text-center">
                 <a href="login.html" class="link">Ya tengo cuenta · Iniciar sesión</a>
             </div>
         </div>
@@ -74,67 +83,13 @@
                 <span class="navbar__icon" aria-hidden="true">👤</span>
                 <span>Login</span>
             </a>
+            <button type="button" class="navbar__item navbar__item--button" id="themeToggle" aria-pressed="false">
+                <span class="navbar__icon" id="themeToggleIcon" aria-hidden="true">🌙</span>
+                <span>Tema</span>
+            </button>
         </nav>
     </main>
 
-    <script>
-        (function () {
-            const form = document.getElementById('registerForm');
-            const nameInput = document.getElementById('reg-name');
-            const userInput = document.getElementById('reg-user');
-            const emailInput = document.getElementById('reg-email');
-            const passInput = document.getElementById('reg-pass');
-            const passConfirmInput = document.getElementById('reg-pass-confirm');
-
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                let isValid = true;
-
-                const nameError = document.getElementById('reg-name-error');
-                const userError = document.getElementById('reg-user-error');
-                const emailError = document.getElementById('reg-email-error');
-                const passError = document.getElementById('reg-pass-error');
-                const passConfirmError = document.getElementById('reg-pass-confirm-error');
-
-                nameError.textContent = '';
-                userError.textContent = '';
-                emailError.textContent = '';
-                passError.textContent = '';
-                passConfirmError.textContent = '';
-
-                if (nameInput.value.trim().length < 3) {
-                    nameError.textContent = 'Ingresá tu nombre completo';
-                    isValid = false;
-                }
-
-                if (userInput.value.trim().length < 3) {
-                    userError.textContent = 'El usuario debe tener al menos 3 caracteres';
-                    isValid = false;
-                }
-
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailInput.value.trim())) {
-                    emailError.textContent = 'Ingresá un correo electrónico válido';
-                    isValid = false;
-                }
-
-                if (passInput.value.length < 6) {
-                    passError.textContent = 'La contraseña debe tener al menos 6 caracteres';
-                    isValid = false;
-                }
-
-                if (passConfirmInput.value !== passInput.value || passConfirmInput.value === '') {
-                    passConfirmError.textContent = 'Las contraseñas no coinciden';
-                    isValid = false;
-                }
-
-                if (isValid) {
-                    alert('Cuenta creada correctamente. Ahora podés iniciar sesión.');
-                    form.reset();
-                }
-            });
-        })();
-    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
